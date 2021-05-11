@@ -164,4 +164,5 @@
 2. [薪资管理系统](https://gitee.com/doudoutang/salary_system)
 3. [OA系统](https://gitee.com/doudoutang/bankOA)
 4. [招投标管理系统](https://gitee.com/doudoutang/bid-system)
+5. [绩效考核系统](https://gitee.com/doudoutang/assess_system)
 
