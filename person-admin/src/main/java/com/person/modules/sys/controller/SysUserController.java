@@ -1,7 +1,3 @@
-/**
- *
- */
-
 package com.person.modules.sys.controller;
 
 
@@ -12,6 +8,8 @@ import com.person.common.validator.Assert;
 import com.person.common.validator.ValidatorUtils;
 import com.person.common.validator.group.AddGroup;
 import com.person.common.validator.group.UpdateGroup;
+import com.person.modules.person.dao.*;
+import com.person.modules.person.service.UserDocService;
 import com.person.modules.sys.entity.SysUserEntity;
 import com.person.modules.sys.service.SysUserRoleService;
 import com.person.modules.sys.service.SysUserService;
@@ -37,12 +35,14 @@ public class SysUserController extends AbstractController {
     private SysUserService sysUserService;
     @Autowired
     private SysUserRoleService sysUserRoleService;
+    @Autowired
+    private UserDocService userDocService;
 
     /**
      * 所有用户列表
      */
     @RequestMapping("/list")
-    @RequiresPermissions("sys:user:list")
+//    @RequiresPermissions("sys:user:list")
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = sysUserService.queryPage(params);
 
@@ -132,6 +132,24 @@ public class SysUserController extends AbstractController {
         return R.ok();
     }
 
+    @Autowired
+    ConvertApplyDao convertApplyDao;
+    @Autowired
+    InterviewPlanDao interviewPlanDao;
+    @Autowired
+    RecruitNeedDao recruitNeedDao;
+    @Autowired
+    SalaryRecordDao salaryRecordDao;
+
+    @Autowired
+    UserPlanDao userPlanDao;
+
+    @Autowired
+    WorkDailyDao workDailyDao;
+
+    @Autowired
+    WorkRecordDao workRecordDao;
+
     /**
      * 删除用户
      */
@@ -146,8 +164,17 @@ public class SysUserController extends AbstractController {
         if (ArrayUtils.contains(userIds, getUserId())) {
             return R.error("当前用户不能删除");
         }
-
-        sysUserService.removeByIds(Arrays.asList(userIds));
+        convertApplyDao.deleteBatchByUsers(userIds);
+        interviewPlanDao.deleteBatchByUsers(userIds);
+        recruitNeedDao.deleteBatchByUsers(userIds);
+        salaryRecordDao.deleteBatchByUsers(userIds);
+        userPlanDao.deleteBatchByUsers(userIds);
+        workDailyDao.deleteBatchByUsers(userIds);
+        workRecordDao.deleteBatchByUsers(userIds);
+        int result = userDocService.deleteBatchByUsers(userIds);
+        if (userIds.length == result) {
+            sysUserService.removeByIds(Arrays.asList(userIds));
+        }
 
         return R.ok();
     }

@@ -1,8 +1,6 @@
 /**
  *
- */
-
-package com.person.modules.person.controller;
+ */package com.person.modules.person.controller;
 
 
 import com.person.common.annotation.SysLog;
@@ -38,7 +36,7 @@ public class ConvertApplyController extends AbstractController {
     @RequestMapping("/list")
     @RequiresPermissions("person:apply:list")
     public R list(@RequestParam Map<String, Object> params) {
-        if(getUserId() != 1){
+        if(getRoleId() == 5){
             //不是管理员只能查看自己工资记录
             params.put("applyUserId", getUserId());
         }
@@ -99,6 +97,9 @@ public class ConvertApplyController extends AbstractController {
     @RequiresPermissions("person:apply:approval")
     public R approval(@RequestBody ConvertApplyEntity apply) {
         ValidatorUtils.validateEntity(apply);
+        if(apply.getApprovalUserId()==getUserId()){
+            return R.error("自己不能审批自己的申请");
+        }
         if(ApprovalStatusEnum.ADOPT.getCode()== apply.getApprovalResult()){
             apply.setStatus(ApplyStatusEnum.ADOPT.getCode());
         }else{

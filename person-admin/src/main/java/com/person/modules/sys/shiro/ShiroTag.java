@@ -1,11 +1,3 @@
-/**
- * 
- *
- * 
- *
- * 
- */
-
 package com.person.modules.sys.shiro;
 
 import org.apache.shiro.SecurityUtils;

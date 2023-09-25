@@ -1,11 +1,3 @@
-/**
- * 
- *
- * 
- *
- * 
- */
-
 package com.person.modules.sys.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -60,9 +52,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuEntity> i
 	@Override
 	public List<SysMenuEntity> getUserMenuList(Long userId) {
 		//系统管理员，拥有最高权限
-		if(userId == Constant.SUPER_ADMIN){
-			return getAllMenuList(null);
-		}
+//		if(userId == Constant.SUPER_ADMIN){
+//			return getAllMenuList(null);
+//		}
 		
 		//用户菜单列表
 		List<Long> menuIdList = sysUserService.queryAllMenuId(userId);

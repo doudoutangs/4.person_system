@@ -1,7 +1,3 @@
-/**
- *
- */
-
 package com.person.modules.person.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -13,6 +9,7 @@ import com.person.common.utils.Query;
 import com.person.modules.person.dao.ConvertApplyDao;
 import com.person.modules.person.entity.ConvertApplyEntity;
 import com.person.modules.person.service.ConvertApplyService;
+import com.person.modules.sys.entity.SysUserEntity;
 import com.person.modules.sys.service.SysUserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +28,13 @@ public class ConvertApplyServiceImpl extends ServiceImpl<ConvertApplyDao, Conver
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        Long applyUserId = (Long) params.get("applyUserId");
+        Object applyId = params.get("applyUserId");
+        Long applyUserId = applyId == null ? null : Long.valueOf(applyId.toString());
 
         IPage<ConvertApplyEntity> page = this.page(
                 new Query<ConvertApplyEntity>().getPage(params),
                 new QueryWrapper<ConvertApplyEntity>().
-                        eq(applyUserId != null, "apply_user_id", applyUserId)
+                        eq((applyUserId != null && applyUserId != -1), "apply_user_id", applyUserId)
                         .apply(params.get(Constant.SQL_FILTER) != null, (String) params.get(Constant.SQL_FILTER))
         );
         List<ConvertApplyEntity> records = page.getRecords();
@@ -45,10 +43,16 @@ public class ConvertApplyServiceImpl extends ServiceImpl<ConvertApplyDao, Conver
             Long userId = r.getApplyUserId();
             Long approvalUserId = r.getApprovalUserId();
             if (null != userId) {
-                r.setApplyName(userService.getById(userId).getName());
+                SysUserEntity u = userService.getById(userId);
+                if (u != null) {
+                    r.setApplyName(u.getName());
+                }
             }
             if (null != approvalUserId) {
-                r.setApprovalName(userService.getById(approvalUserId).getName());
+                SysUserEntity u = userService.getById(approvalUserId);
+                if (u != null) {
+                    r.setApprovalName(u.getName());
+                }
             }
             list.add(r);
         }

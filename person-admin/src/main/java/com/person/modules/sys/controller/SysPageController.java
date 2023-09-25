@@ -1,11 +1,3 @@
-/**
- *
- *
- *
- *
- *
- */
-
 package com.person.modules.sys.controller;
 
 import org.springframework.stereotype.Controller;

@@ -1,11 +1,3 @@
-/**
- *
- *
- *
- *
- *
- */
-
 package com.person.common.config;
 
 import com.person.modules.sys.shiro.ShiroTag;

@@ -1,8 +1,6 @@
 /**
  *
- */
-
-package com.person.modules.person.controller;
+ */package com.person.modules.person.controller;
 
 import com.person.common.annotation.SysLog;
 import com.person.common.utils.DateUtils;
@@ -33,7 +31,7 @@ public class UserPlanController extends AbstractController {
     @RequestMapping("/list")
     @RequiresPermissions("person:plan:list")
     public R list(@RequestParam Map<String, Object> params) {
-        if (getUserId() != 1) {
+        if(getRoleId() == 5){
             //不是管理员只能查看自己工资记录
             params.put("userId", getUserId());
         }

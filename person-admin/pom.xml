@@ -10,12 +10,7 @@
 	<description>person-admin</description>
 
 	<properties>
-		<shiro.version>1.4.0</shiro.version>
-		<kaptcha.version>0.0.9</kaptcha.version>
-		<qiniu.version>7.2.23</qiniu.version>
-		<aliyun.oss.version>2.5.0</aliyun.oss.version>
-		<qcloud.cos.version>4.4</qcloud.cos.version>
-		<swagger.version>2.7.0</swagger.version>
+
 	</properties>
 
 	<dependencies>
@@ -34,21 +29,11 @@
 		    <version>${shiro.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.github.axet</groupId>
-			<artifactId>kaptcha</artifactId>
-			<version>${kaptcha.version}</version>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-generator</artifactId>
+			<version>${mybatisplus.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>${swagger.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>${swagger.version}</version>
-		</dependency>
-    </dependencies>
+	</dependencies>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>

@@ -1,11 +1,3 @@
-/**
- *
- *
- *
- *
- *
- */
-
 package com.person.modules.person.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

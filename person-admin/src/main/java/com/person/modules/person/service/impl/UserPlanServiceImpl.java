@@ -1,7 +1,3 @@
-/**
- *
- */
-
 package com.person.modules.person.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -14,6 +10,7 @@ import com.person.modules.person.dao.UserPlanDao;
 import com.person.modules.person.entity.UserPlanEntity;
 import com.person.modules.person.entity.WorkDailyEntity;
 import com.person.modules.person.service.UserPlanService;
+import com.person.modules.sys.entity.SysUserEntity;
 import com.person.modules.sys.service.SysUserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +42,10 @@ public class UserPlanServiceImpl extends ServiceImpl<UserPlanDao, UserPlanEntity
 
         List<UserPlanEntity> list = new ArrayList<UserPlanEntity>();
         for (UserPlanEntity r : records) {
-            r.setUserName(userService.getById(r.getUserId()).getName());
+            SysUserEntity u = userService.getById(r.getUserId());
+            if (u != null) {
+                r.setUserName(u.getName());
+            }
             list.add(r);
         }
         page.setRecords(list);

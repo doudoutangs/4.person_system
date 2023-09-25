@@ -1,11 +1,3 @@
-/**
- *
- *
- *
- *
- *
- */
-
 package com.person.common.validator.group;
 
 import javax.validation.GroupSequence;

@@ -1,8 +1,6 @@
 /**
  *
- */
-
-package com.person.modules.person.controller;
+ */package com.person.modules.person.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.person.common.annotation.SysLog;
@@ -47,7 +45,7 @@ public class WorkRecordController extends AbstractController {
     @RequestMapping("/list")
     @RequiresPermissions("person:work:list")
     public R list(@RequestParam Map<String, Object> params) {
-        if(getUserId() != 1){
+        if(getRoleId() == 5){
             //不是管理员只能查看自己工资记录
             params.put("userId", getUserId());
         }

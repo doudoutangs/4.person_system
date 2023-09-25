@@ -1,11 +1,3 @@
-/**
- *
- *
- *
- *
- *
- */
-
 package com.person.common.xss;
 
 import com.person.common.exception.RRException;

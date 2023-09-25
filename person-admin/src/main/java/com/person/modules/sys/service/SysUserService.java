@@ -1,11 +1,3 @@
-/**
- * 
- *
- * 
- *
- * 
- */
-
 package com.person.modules.sys.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -29,7 +21,13 @@ public interface SysUserService extends IService<SysUserEntity> {
 	 * 查询用户的所有菜单ID
 	 */
 	List<Long> queryAllMenuId(Long userId);
-	
+
+	/**
+	 * 查询部门下的所有人
+	 * @param deptId
+	 * @return
+	 */
+	List<SysUserEntity> queryByDeptId(Long deptId);
 	/**
 	 * 保存用户
 	 */

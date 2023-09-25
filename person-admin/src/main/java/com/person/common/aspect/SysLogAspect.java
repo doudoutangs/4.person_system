@@ -1,11 +1,3 @@
-/**
- *
- *
- *
- *
- *
- */
-
 package com.person.common.aspect;
 
 import com.google.gson.Gson;

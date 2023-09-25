@@ -1,11 +1,3 @@
-/**
- * 
- *
- * 
- *
- * 
- */
-
 package com.person.modules.person.controller;
 
 import com.person.common.annotation.SysLog;

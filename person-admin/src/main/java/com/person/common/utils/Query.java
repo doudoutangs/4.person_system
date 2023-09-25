@@ -1,11 +1,3 @@
-/**
- * 
- *
- * 
- *
- * 
- */
-
 package com.person.common.utils;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;

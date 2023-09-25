@@ -1,11 +1,3 @@
-/**
- *
- *
- *
- *
- *
- */
-
 package com.person.common.exception;
 
 import com.person.common.utils.R;

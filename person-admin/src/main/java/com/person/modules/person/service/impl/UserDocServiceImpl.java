@@ -1,7 +1,3 @@
-/**
- *
- */
-
 package com.person.modules.person.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -16,8 +12,10 @@ import com.person.modules.person.entity.SalaryRecordEntity;
 import com.person.modules.person.entity.UserDocEntity;
 import com.person.modules.person.service.UserDocService;
 import com.person.modules.sys.entity.SysDeptEntity;
+import com.person.modules.sys.entity.SysUserEntity;
 import com.person.modules.sys.service.SysDeptService;
 import com.person.modules.sys.service.SysUserService;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +30,8 @@ public class UserDocServiceImpl extends ServiceImpl<UserDocDao, UserDocEntity> i
     SysUserService userService;
     @Autowired
     SysDeptService sysDeptService;
+    @Autowired
+    UserDocDao userDocDao;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -57,15 +57,24 @@ public class UserDocServiceImpl extends ServiceImpl<UserDocDao, UserDocEntity> i
         List<UserDocEntity> records = page.getRecords();
 
         List<UserDocEntity> list = new ArrayList<UserDocEntity>();
-        for (UserDocEntity r : records) {
-            String birthYear = r.getBirth().substring(0, 4);
-            String year = DateUtils.format(new Date(), "YYYY");
-            int age = Integer.valueOf(year) - Integer.valueOf(birthYear);
-            r.setAge(age);
-            r.setUserName(userService.getById(r.getUserId()).getName());
-            SysDeptEntity sysDeptEntity = sysDeptService.getById(r.getDeptId());
-            r.setDeptName(sysDeptEntity.getName());
-            list.add(r);
+        if(CollectionUtils.isNotEmpty(records)) {
+            for (UserDocEntity r : records) {
+                if (StringUtils.isNotBlank(r.getBirth())) {
+                    String birthYear = r.getBirth().substring(0, 4);
+                    String year = DateUtils.format(new Date(), "YYYY");
+                    int age = Integer.valueOf(year) - Integer.valueOf(birthYear);
+                    r.setAge(age);
+                }
+                SysUserEntity u = userService.getById(r.getUserId());
+                if (null != u) {
+                    r.setUserName(u.getName());
+                }
+                SysDeptEntity dept = sysDeptService.getById(r.getDeptId());
+                if (dept != null) {
+                    r.setDeptName(dept.getName());
+                }
+                list.add(r);
+            }
         }
         page.setRecords(list);
         return new PageUtils(page);
@@ -75,6 +84,11 @@ public class UserDocServiceImpl extends ServiceImpl<UserDocDao, UserDocEntity> i
     public void deleteBatch(Long[] ids) {
         this.removeByIds(Arrays.asList(ids));
 
+    }
+
+    @Override
+    public int deleteBatchByUsers(Long[] ids) {
+        return userDocDao.deleteBatchByUsers(ids);
     }
 
     @Override

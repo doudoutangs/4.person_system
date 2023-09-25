@@ -1,11 +1,3 @@
-/**
- * 
- *
- * 
- *
- * 
- */
-
 package com.person.common.config;
 
 import com.person.modules.sys.shiro.UserRealm;
@@ -37,8 +29,8 @@ public class ShiroConfig {
      * 单机环境，session交给shiro管理
      */
     @Bean
-    @ConditionalOnProperty(prefix = "renren", name = "cluster", havingValue = "false")
-    public DefaultWebSessionManager sessionManager(@Value("${renren.globalSessionTimeout:3600}") long globalSessionTimeout){
+    @ConditionalOnProperty(prefix = "person", name = "cluster", havingValue = "false")
+    public DefaultWebSessionManager sessionManager(@Value("${person.globalSessionTimeout:3600}") long globalSessionTimeout){
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
         sessionManager.setSessionValidationSchedulerEnabled(true);
         sessionManager.setSessionIdUrlRewritingEnabled(false);
@@ -52,7 +44,7 @@ public class ShiroConfig {
      * 集群环境，session交给spring-session管理
      */
     @Bean
-    @ConditionalOnProperty(prefix = "renren", name = "cluster", havingValue = "true")
+    @ConditionalOnProperty(prefix = "person", name = "cluster", havingValue = "true")
     public ServletContainerSessionManager servletContainerSessionManager() {
         return new ServletContainerSessionManager();
     }
@@ -76,11 +68,8 @@ public class ShiroConfig {
         shiroFilter.setUnauthorizedUrl("/");
 
         Map<String, String> filterMap = new LinkedHashMap<>();
-        filterMap.put("/swagger/**", "anon");
         filterMap.put("/v2/api-docs", "anon");
-        filterMap.put("/swagger-ui.html", "anon");
         filterMap.put("/webjars/**", "anon");
-        filterMap.put("/swagger-resources/**", "anon");
 
         filterMap.put("/statics/**", "anon");
         filterMap.put("/login.html", "anon");

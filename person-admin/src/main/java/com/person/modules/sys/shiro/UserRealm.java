@@ -1,17 +1,12 @@
-/**
- *
- */
-
 package com.person.modules.sys.shiro;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.person.modules.person.entity.UserDocEntity;
 import com.person.modules.person.service.UserDocService;
-import com.person.modules.sys.entity.SysMenuEntity;
-import com.person.common.utils.Constant;
 import com.person.modules.sys.dao.SysMenuDao;
 import com.person.modules.sys.dao.SysUserDao;
 import com.person.modules.sys.entity.SysUserEntity;
+import com.person.modules.sys.service.SysUserRoleService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
@@ -24,7 +19,10 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * 认证
@@ -39,7 +37,8 @@ public class UserRealm extends AuthorizingRealm {
     private SysMenuDao sysMenuDao;
     @Autowired
     UserDocService userDocService;
-
+    @Autowired
+    private SysUserRoleService sysUserRoleService;
     /**
      * 授权(验证权限时调用)
      */
@@ -51,15 +50,15 @@ public class UserRealm extends AuthorizingRealm {
         List<String> permsList;
 
         //系统管理员，拥有最高权限
-        if (userId == Constant.SUPER_ADMIN) {
-            List<SysMenuEntity> menuList = sysMenuDao.selectList(null);
-            permsList = new ArrayList<>(menuList.size());
-            for (SysMenuEntity menu : menuList) {
-                permsList.add(menu.getPerms());
-            }
-        } else {
+//        if (userId == Constant.SUPER_ADMIN) {
+//            List<SysMenuEntity> menuList = sysMenuDao.selectList(null);
+//            permsList = new ArrayList<>(menuList.size());
+//            for (SysMenuEntity menu : menuList) {
+//                permsList.add(menu.getPerms());
+//            }
+//        } else {
             permsList = sysUserDao.queryAllPerms(userId);
-        }
+//        }
 
         //用户权限列表
         Set<String> permsSet = new HashSet<>();
@@ -87,6 +86,8 @@ public class UserRealm extends AuthorizingRealm {
         if (null != userDoc) {
             Long userId = userDoc.getUserId();
             user = sysUserDao.selectById(userId);
+            List<Long> roleIdList = sysUserRoleService.queryRoleIdList(userId);
+            user.setRoleIdList(roleIdList);
         } else {
             //查询用户信息
             user = sysUserDao.selectOne(new QueryWrapper<SysUserEntity>().eq("username", token.getUsername()));
@@ -100,7 +101,8 @@ public class UserRealm extends AuthorizingRealm {
         if (user.getStatus() == 0) {
             throw new LockedAccountException("账号已被锁定,请联系管理员");
         }
-
+        List<Long> roleIdList = sysUserRoleService.queryRoleIdList(user.getUserId());
+        user.setRoleIdList(roleIdList);
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(user.getSalt()), getName());
         return info;
     }

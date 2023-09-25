@@ -1,11 +1,3 @@
-/**
- * 
- *
- * 
- *
- * 
- */
-
 package com.person.common.validator;
 
 import com.person.common.exception.RRException;

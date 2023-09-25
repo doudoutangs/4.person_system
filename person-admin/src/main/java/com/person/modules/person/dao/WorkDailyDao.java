@@ -1,11 +1,3 @@
-/**
- * 
- *
- * 
- *
- * 
- */
-
 package com.person.modules.person.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -19,6 +11,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface WorkDailyDao extends BaseMapper<WorkDailyEntity> {
-	
-
+    int deleteBatchByUsers(Long[] ids);
 }

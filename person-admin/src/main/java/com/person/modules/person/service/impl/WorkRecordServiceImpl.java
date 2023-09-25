@@ -1,7 +1,3 @@
-/**
- *
- */
-
 package com.person.modules.person.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -15,6 +11,7 @@ import com.person.modules.person.entity.UserDocEntity;
 import com.person.modules.person.entity.UserPlanEntity;
 import com.person.modules.person.entity.WorkRecordEntity;
 import com.person.modules.person.service.WorkRecordService;
+import com.person.modules.sys.entity.SysUserEntity;
 import com.person.modules.sys.service.SysUserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +27,7 @@ import java.util.Map;
 public class WorkRecordServiceImpl extends ServiceImpl<WorkRecordDao, WorkRecordEntity> implements WorkRecordService {
     @Autowired
     SysUserService userService;
+
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         String workMonth = (String) params.get("workMonth");
@@ -50,7 +48,10 @@ public class WorkRecordServiceImpl extends ServiceImpl<WorkRecordDao, WorkRecord
 
         List<WorkRecordEntity> list = new ArrayList<WorkRecordEntity>();
         for (WorkRecordEntity r : records) {
-            r.setUserName(userService.getById(r.getUserId()).getName());
+            SysUserEntity u = userService.getById(r.getUserId());
+            if (u != null) {
+                r.setUserName(u.getName());
+            }
             list.add(r);
         }
         page.setRecords(list);

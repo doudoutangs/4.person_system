@@ -1,11 +1,3 @@
-/**
- * 
- *
- * 
- *
- * 
- */
-
 package com.person.common.xss;
 
 import org.apache.commons.io.IOUtils;

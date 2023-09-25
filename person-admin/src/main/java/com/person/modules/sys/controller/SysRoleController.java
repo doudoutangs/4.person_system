@@ -1,11 +1,3 @@
-/**
- * 
- *
- * 
- *
- * 
- */
-
 package com.person.modules.sys.controller;
 
 import com.person.common.annotation.SysLog;
@@ -24,12 +16,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author: QQ:553039957
- * @Date: 2023/9/25 15:38
- * @Description:
- * 1. gitcode主页： https://gitcode.net/tbb414 （推荐）
- * 2. github主页：https://github.com/doudoutangs
- * 3. gitee(码云)主页：https://gitee.com/spdoudoutang
+ * 角色管理
+ *
+ * @author 
  */
 @RestController
 @RequestMapping("/sys/role")

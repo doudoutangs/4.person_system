@@ -1,11 +1,3 @@
-/**
- * 
- *
- * 
- *
- * 
- */
-
 package com.person.modules.person.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -15,8 +7,8 @@ import com.person.common.utils.PageUtils;
 import com.person.common.utils.Query;
 import com.person.modules.person.dao.RecruitNeedDao;
 import com.person.modules.person.entity.RecruitNeedEntity;
-import com.person.modules.person.entity.UserDocEntity;
 import com.person.modules.person.service.RecruitNeedService;
+import com.person.modules.sys.entity.SysUserEntity;
 import com.person.modules.sys.service.SysUserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,10 +39,16 @@ public class RecruitNeedServiceImpl extends ServiceImpl<RecruitNeedDao, RecruitN
             Long needUserId = r.getNeedUserId();
             Long recruitUserId = r.getRecruitUserId();
             if(null != needUserId){
-                r.setNeedName(userService.getById(needUserId).getName());
+                SysUserEntity user = userService.getById(needUserId);
+                if(null!=user) {
+                    r.setNeedName(user.getName());
+                }
             }
             if(null != recruitUserId){
-                r.setRecruitName(userService.getById(recruitUserId).getName());
+                SysUserEntity user = userService.getById(recruitUserId);
+                if(null!=user) {
+                    r.setRecruitName(user.getName());
+                }
             }
             list.add(r);
         }

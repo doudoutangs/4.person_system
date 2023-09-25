@@ -1,11 +1,3 @@
-/**
- * 
- *
- * 
- *
- * 
- */
-
 package com.person.modules.sys.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -89,7 +81,7 @@ public class SysUserEntity implements Serializable {
 	/**
 	 * 部门ID
 	 */
-	@NotNull(message="部门不能为空", groups = {AddGroup.class, UpdateGroup.class})
+//	@NotNull(message="部门不能为空", groups = {AddGroup.class, UpdateGroup.class})
 	private Long deptId;
 
 	/**

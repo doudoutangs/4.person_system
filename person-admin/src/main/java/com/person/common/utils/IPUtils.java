@@ -1,11 +1,3 @@
-/**
- * 
- *
- * 
- *
- * 
- */
-
 package com.person.common.utils;
 
 import org.apache.commons.lang.StringUtils;

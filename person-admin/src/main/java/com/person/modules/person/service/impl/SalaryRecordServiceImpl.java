@@ -1,7 +1,3 @@
-/**
- *
- */
-
 package com.person.modules.person.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -47,8 +43,12 @@ public class SalaryRecordServiceImpl extends ServiceImpl<SalaryRecordDao, Salary
         for (SalaryRecordEntity r : records) {
             SysUserEntity user = userService.getById(r.getUserId());
             SysDeptEntity dept = deptService.getById(user.getDeptId());
-            r.setDeptName(dept.getName());
-            r.setUserName(user.getName());
+            if (dept != null) {
+                r.setDeptName(dept.getName());
+            }
+            if (user != null) {
+                r.setUserName(user.getName());
+            }
             list.add(r);
         }
         page.setRecords(list);

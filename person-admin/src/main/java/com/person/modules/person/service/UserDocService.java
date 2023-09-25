@@ -1,11 +1,3 @@
-/**
- * 
- *
- * 
- *
- * 
- */
-
 package com.person.modules.person.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -24,6 +16,7 @@ public interface UserDocService  extends IService<UserDocEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
     void deleteBatch(Long[] ids);
+    int deleteBatchByUsers(Long[] ids);
 
     void update(UserDocEntity record);
 }

@@ -1,11 +1,3 @@
-/**
- * 
- *
- * 
- *
- * 
- */
-
 package com.person.modules.sys.controller;
 
 import com.person.modules.sys.entity.SysUserEntity;
@@ -31,5 +23,8 @@ public abstract class AbstractController {
 
 	protected Long getDeptId() {
 		return getUser().getDeptId();
+	}
+	protected Long getRoleId() {
+		return getUser().getRoleIdList().get(0);
 	}
 }

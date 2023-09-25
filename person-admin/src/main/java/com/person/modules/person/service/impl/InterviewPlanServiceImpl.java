@@ -1,11 +1,3 @@
-/**
- * 
- *
- * 
- *
- * 
- */
-
 package com.person.modules.person.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -16,9 +8,8 @@ import com.person.common.utils.PageUtils;
 import com.person.common.utils.Query;
 import com.person.modules.person.dao.InterviewPlanDao;
 import com.person.modules.person.entity.InterviewPlanEntity;
-import com.person.modules.person.entity.SalaryRecordEntity;
-import com.person.modules.person.entity.UserDocEntity;
 import com.person.modules.person.service.InterviewPlanService;
+import com.person.modules.sys.entity.SysUserEntity;
 import com.person.modules.sys.service.SysUserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,18 +30,23 @@ public class InterviewPlanServiceImpl extends ServiceImpl<InterviewPlanDao, Inte
     public PageUtils queryPage(Map<String, Object> params) {
         String candidate = (String)params.get("candidate");
         String candidateMobile = (String)params.get("candidateMobile");
+        Object meetUser = params.get("meetUserId");
+        Long meetUserId = (meetUser == null) ? null : Long.parseLong(meetUser.toString());
         IPage<InterviewPlanEntity> page = this.page(
                 new Query<InterviewPlanEntity>().getPage(params),
                 new QueryWrapper<InterviewPlanEntity>()
                         .like(StringUtils.isNotBlank(candidate), "candidate", candidate)
                         .like(StringUtils.isNotBlank(candidateMobile), "candidate_mobile", candidateMobile)
+                        .eq((meetUserId!=null&&meetUserId!=-1),"meet_user_id",meetUserId)
                         .apply(params.get(Constant.SQL_FILTER) != null, (String)params.get(Constant.SQL_FILTER))
         );
         List<InterviewPlanEntity> records = page.getRecords();
 
         List<InterviewPlanEntity> list = new ArrayList<InterviewPlanEntity>();
         for (InterviewPlanEntity r : records) {
-            r.setMeetName(userService.getById(r.getMeetUserId()).getName());
+            Long userId = r.getMeetUserId();
+            SysUserEntity user = userService.getById(userId);
+            r.setMeetName(user.getName());
             list.add(r);
         }
         page.setRecords(list);

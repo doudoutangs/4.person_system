@@ -1,11 +1,3 @@
-/**
- * 
- *
- * 
- *
- * 
- */
-
 package com.person.modules.person.dao;
 
 
@@ -20,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface WorkRecordDao extends BaseMapper<WorkRecordEntity> {
-	
+    int deleteBatchByUsers(Long[] ids);
 }
