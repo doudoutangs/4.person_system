@@ -153,13 +153,11 @@
 ![启动项目](https://raw.githubusercontent.com/doudoutangs/person_system/main/%E4%BA%BA%E4%BA%8B%E7%AE%A1%E7%90%86/0-99-%E5%90%AF%E5%8A%A8.png)
 4. 访问：http://localhost:8888（账号admin/admin）
 
-
-
-## 六、合作说明
-1. 合作唯一渠道：QQ:553039957详谈。本项目只在gitee和github,gitcode这3个平台上发布，其余平台均为盗版。
+## 六、说明
+1. QQ:553039957
 2. gitcode主页： https://gitcode.net/tbb414 (推荐)
 3. github主页：https://github.com/doudoutangs
-4. gitee(码云)主页：https://gitee.com/doudoutang
+4. gitee(码云)主页：https://gitee.com/spdoudoutang
 ## 七、其他项目
 1. [人事管理系统](https://gitcode.net/tbb414//person_system)
 2. [薪资管理系统](https://gitcode.net/tbb414//salary_system)
@@ -167,3 +165,4 @@
 4. [招投标管理系统](https://gitcode.net/tbb414//bid_system)
 5. [绩效考核系统](https://gitcode.net/tbb414//assess_system)
 6. [就业管理系统](https://gitcode.net/tbb414/eta_system)
+

@@ -8,7 +8,14 @@ import com.person.common.validator.group.UpdateGroup;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
-
+/**
+ * @author: QQ:553039957
+ * @Date: 2023/9/25 15:38
+ * @Description:
+ * 1. gitcode主页： https://gitcode.net/tbb414 （推荐）
+ * 2. github主页：https://github.com/doudoutangs
+ * 3. gitee(码云)主页：https://gitee.com/spdoudoutang
+ */
 @TableName("b_user_doc")
 public class UserDocEntity {
     @TableId
