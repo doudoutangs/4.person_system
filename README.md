@@ -158,11 +158,11 @@
 1. gitcode主页： https://gitcode.com/user/tbb414 (推荐)
 2. github主页：https://github.com/doudoutangs
 ## 七、其他项目
-1. [招投标管理系统](https://gitcode.com/tbb414/bid_system)
-2. [OA系统](https://gitcode.com/tbb414/oa_system)
-3. [薪资管理系统](https://gitcode.com/tbb414/salary_system)
-4. [人事管理系统](https://gitcode.com/tbb414/person_system)
-5. [绩效考核系统](https://gitcode.com/tbb414/assess_system)
-6. [就业管理系统](https://gitcode.com/tbb414/eta_system)
-7. [图书管理系统]（开发中）
+1. [招投标管理系统](https://gitcode.com/tbb414/bid_system/overview)
+2. [OA系统](https://gitcode.com/tbb414/oa_system/overview)
+3. [薪资管理系统](https://gitcode.com/tbb414/salary_system/overview)
+4. [人事管理系统](https://gitcode.com/tbb414/person_system/overview)
+5. [绩效考核系统](https://gitcode.com/tbb414/assess_system/overview)
+6. [就业管理系统](https://gitcode.com/tbb414/eta_system/overview)
+7. [图书管理系统](https://gitcode.com/tbb414/library_system/overview)
 
