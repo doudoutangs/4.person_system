@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.person</groupId>
     <artifactId>person_system</artifactId>
-    <version>4.0.0</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <name>person_system</name>
@@ -158,7 +158,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>person_system</finalName>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

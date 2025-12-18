@@ -155,15 +155,14 @@
 
 ## 六、源码地址
 0. QQ:553039957
-1. gitee（码云）主页： https://gitee.com/woshimalong
-2. gitcode主页： https://gitcode.com/user/tbb414
-3. github主页：https://github.com/doudoutangs
-## 七、其他项目
-1. [招投标管理系统](https://gitee.com/woshimalong/tender_system)
-2. [办公管理系统](https://gitee.com/woshimalong/office_system)
-3. [薪资管理系统](https://gitee.com/woshimalong/wages_system)
-4. [人事管理系统](https://gitee.com/woshimalong/hr_system)
-5. [绩效考核系统](https://gitee.com/woshimalong/kpi_system)
-6. [就业管理系统](https://gitee.com/woshimalong/job_system)
-7. [图书管理系统](https://gitee.com/woshimalong/library_system)
+1. gitcode主页： https://gitcode.com/user/tbb414/repos
+2. github主页：https://github.com/doudoutangs
 
+## 七、其他项目
+1. [招投标管理系统](https://gitcode.com/tbb414/tender_system)
+2. [办公管理系统](https://gitcode.com/tbb414/office_system)
+3. [薪资管理系统](https://gitcode.com/tbb414/wages_system)
+4. [人事管理系统](https://gitcode.com/tbb414/hr_system)
+5. [绩效考核系统](https://gitcode.com/tbb414/kpi_system)
+6. [就业管理系统](https://gitcode.com/tbb414/job_system)
+7. [图书管理系统](https://gitcode.com/tbb414/library_system)
